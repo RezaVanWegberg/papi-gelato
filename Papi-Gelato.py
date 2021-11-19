@@ -5,7 +5,7 @@ No = ["No", "no", "N", "n"]
 
 Aardbei = ["Aardbei", "aardbei", "A", "a"]
 Chocolade = ["Chocolade", "chocolade", "C", "c"]
-Munt = ["Munt", "munt", "M", "m"]
+# Munt = ["Munt", "munt", "M", "m"]
 Vanille = ["Vanille", "vanille", "V", "v"]
 
 geen = ["geen", "Geen", "A", "a"]
@@ -32,6 +32,9 @@ HoorntjeBakje = "bakje"
 
 Begin = True
 
+def sorry():
+    print("Sorry dat is geen optie die we aanbieden...")
+
 def Topping():
     global Slagroom
     global Sprinkels
@@ -50,17 +53,17 @@ def Topping():
         elif topping in geen:
             break
         else:
-            print("Sorry dat snap ik niet...")
+            sorry()
 
 def smaak():
     for smaak in range(bolletjes):
             VraagSmaak = True
             while VraagSmaak:
-                SmaakPerBol = input("Welke smaak wilt u voor bolletje " + str(smaak + 1) + "?  A) Aardbei, C) Chocolade, M) Munt of V) Vanille?:")
-                if SmaakPerBol in Aardbei or SmaakPerBol in Chocolade or SmaakPerBol in Munt or SmaakPerBol in Vanille:
+                SmaakPerBol = input("Welke smaak wilt u voor bolletje " + str(smaak + 1) + "?  A) Aardbei, C) Chocolade of V) Vanille?:")
+                if SmaakPerBol in Aardbei or SmaakPerBol in Chocolade or SmaakPerBol in Vanille:
                     VraagSmaak = False
                 else:
-                    print("Sorry dat snap ik niet...")
+                    sorry()
                     VraagSmaak = True
 
 while True:
@@ -70,7 +73,7 @@ while True:
     if ParticulierZakelijk in zakelijkLijst:
         break
     else:
-        print("Sorry dat snap ik niet...")
+        sorry()
 
 if ParticulierZakelijk in particulierLijst:
     while Begin:
@@ -95,7 +98,7 @@ if ParticulierZakelijk in particulierLijst:
                     Begin = False
                     print("Bedankt en tot ziens!")
                 else:   
-                    print("Sorry dat snap ik niet...")
+                    sorry()
         elif bolletjes >= 4 and bolletjes <=8:
             smaak()
             Topping()
@@ -104,19 +107,19 @@ if ParticulierZakelijk in particulierLijst:
             print("Dan krijgt u van mij een bakje met " + str(bolletjes) + " bolletjes.")
             Begin = False
         elif bolletjes >8:        
-            print("Sorry zulke grote bakken hebben wij niet")
+            sorry()
             Begin = True
         else:
-            print("Sorry dat snap ik niet...")
+            sorry()
 elif ParticulierZakelijk in zakelijkLijst:
     ijsLiter = int(input("Hoeveel liter ijs wilt u?:"))
     for aantal in range(ijsLiter):
         while True:
-            SmaakPerLiter = input("Welke smaak wilt u voor liter " + str(aantal + 1) + "?  A) Aardbei, C) Chocolade, M) Munt of V) Vanille?:")
-            if SmaakPerLiter in Aardbei or SmaakPerLiter in Chocolade or SmaakPerLiter in Munt or SmaakPerLiter in Vanille:
+            SmaakPerLiter = input("Welke smaak wilt u voor liter " + str(aantal + 1) + "?  A) Aardbei, C) Chocolade of V) Vanille?:")
+            if SmaakPerLiter in Aardbei or SmaakPerLiter in Chocolade or SmaakPerLiter in Vanille:
                 break
             else:
-                print("Sorry dat snap ik niet...")
+                sorry()
 
 
 
@@ -131,17 +134,17 @@ CaramelPrijs = 0
 ToppingPrijs = SlagroomPrijs + SprinkelsPrijs + CaramelPrijs
 
 
-Bolletjes = AantalBolletjes*1.10
+Bolletjes = AantalBolletjes*0.95
 Hoorntjes = Hoorntje*1.25
 Bakjes = Bakje*0.75
 TotaalParticulier = Bolletjes + Hoorntjes + Bakjes + ToppingPrijs
 
 ijsLiterPrijs = ijsLiter*9.80
-btw = ijsLiterPrijs*0.09
+btw = ijsLiterPrijs*0.06
 
 print("----------[Papi Gelato]----------")
 if ParticulierZakelijk in particulierLijst:
-    print(f"Bolletjes    {bolletjes} X €1.10  = €{Bolletjes:.2f}")
+    print(f"Bolletjes    {bolletjes} X €0.95  = €{Bolletjes:.2f}")
     if HoorntjeBakje in hoorntjeLijst:
         print(f"Hoorntje     {Hoorntje} X €1,25  = €{Hoorntjes:.2f}")
     else:
@@ -156,5 +159,5 @@ elif ParticulierZakelijk in zakelijkLijst:
     print(f"Liter   {ijsLiter} X €9.80 = €{ijsLiterPrijs:.2f}")
     print("                         -------- +")
     print(f"Totaal                  = €{ijsLiterPrijs:.2f}")
-    print(f"BTW (9%)                 = €{btw:.2f}")
+    print(f"BTW (6%)                 = €{btw:.2f}")
 
